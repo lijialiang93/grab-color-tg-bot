@@ -17,7 +17,8 @@ bot.on("photo", async (msg) => {
   const chatId = msg.chat.id;
   const fileId = msg.photo[msg.photo.length - 1].file_id;
 
-  bot.sendMessage(chatId, JSON.stringify(msg.photo));
+  bot.sendMessage(chatId, 'Image received, analyzing...');
+
   const buf = await Process.stream2buffer(bot.getFileStream(fileId));
   const vector = await Process.getVectors(buf);
 
