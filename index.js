@@ -31,6 +31,7 @@ bot.on("photo", async (msg) => {
       return b.percentage - a.percentage;
     });
 
+    bot.sendMessage(chatId, respStr);
     const colorDataImgBuf = Process.createColorDataImage(colors);
     bot.sendPhoto(chatId, colorDataImgBuf);
 
@@ -38,7 +39,6 @@ bot.on("photo", async (msg) => {
     for (const color of colors) {
       respStr += `${color.hex}\n`;
     }
-    bot.sendMessage(chatId, respStr);
   }
 });
 
