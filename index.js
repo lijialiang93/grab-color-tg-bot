@@ -45,7 +45,7 @@ bot.on("photo", async (msg) => {
 bot.on("text", (msg) => {
   const chatId = msg.chat.id;
   const RegExp = /^#[0-9A-F]{6}$/i;
-  if (RegExp.test(msg)) {
+  if (RegExp.test(msg.text)) {
     const hexColorImgBuf = Process.createHexColorImage(colors, 256, 256);
     bot.sendPhoto(chatId, hexColorImgBuf);
   } else {
