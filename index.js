@@ -7,7 +7,7 @@ const options = {
     port: process.env.PORT,
   },
 };
-const url = process.env.APP_URL || "https://tg-color-bot.herokuapp.com:443";
+const url = process.env.APP_URL;
 const bot = new TelegramBot(token, options);
 
 bot.setWebHook(`${url}/bot${token}`);
@@ -17,6 +17,7 @@ bot.on("photo", async (msg) => {
   const chatId = msg.chat.id;
   const fileId = msg.photo[msg.photo.length - 1].file_id;
 
+  bot.sendMessage(chatId, JSON.stringify(msg.photo));
   const buf = await Process.stream2buffer(bot.getFileStream(fileId));
   const vector = await Process.getVectors(buf);
 
