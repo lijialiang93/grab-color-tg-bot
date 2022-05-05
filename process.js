@@ -92,9 +92,19 @@ const createColorDataImage = (colors) => {
   return canvas.toBuffer();
 };
 
+const createHexColorImage = (hex, width, height) => {
+  const canvas = createCanvas(width, height);
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = hex;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  return canvas.toBuffer();
+};
+
 module.exports = {
   stream2buffer,
   applyKmeans,
   getVectors,
   createColorDataImage,
+  createHexColorImage
 };

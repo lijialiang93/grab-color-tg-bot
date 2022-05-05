@@ -36,7 +36,7 @@ bot.on("photo", async (msg) => {
       respStr += `${color.hex}\n`;
     }
     bot.sendMessage(chatId, respStr);
-    
+
     const colorDataImgBuf = Process.createColorDataImage(colors);
     bot.sendPhoto(chatId, colorDataImgBuf);
   }
@@ -44,5 +44,11 @@ bot.on("photo", async (msg) => {
 
 bot.on("text", (msg) => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "Send a photo to get color analyzation");
+  const RegExp = /^#[0-9A-F]{6}$/i;
+  if (RegExp.test(msg)) {
+    const hexColorImgBuf = Process.createHexColorImage(colors, 256, 256);
+    bot.sendPhoto(chatId, hexColorImgBuf);
+  } else {
+    bot.sendMessage(chatId, "Try send a photo or a hex string to me");
+  }
 });
