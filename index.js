@@ -17,7 +17,7 @@ bot.on("photo", async (msg) => {
   const chatId = msg.chat.id;
   const fileId = msg.photo[msg.photo.length - 1].file_id;
 
-  bot.sendMessage(chatId, "Image received, analyzing...");
+  bot.sendMessage(chatId, "Photo received, analyzing...");
 
   const buf = await Process.stream2buffer(bot.getFileStream(fileId));
   const vector = await Process.getVectors(buf);
@@ -49,6 +49,6 @@ bot.on("text", (msg) => {
     const hexColorImgBuf = Process.createHexColorImage(msg.text, 256, 256);
     bot.sendPhoto(chatId, hexColorImgBuf);
   } else {
-    bot.sendMessage(chatId, "Try send a photo or a hex string to me");
+    bot.sendMessage(chatId, "Try send a photo, or a hex code (e.g. #FFD300) to me");
   }
 });
