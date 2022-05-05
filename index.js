@@ -44,5 +44,5 @@ bot.on("photo", async (msg) => {
 
 bot.on("text", (msg) => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "Send a photo to get color analyze");
+  bot.sendMessage(chatId, "Send a photo to get color analyzation");
 });
