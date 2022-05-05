@@ -2,8 +2,15 @@ const TelegramBot = require("node-telegram-bot-api");
 const Process = require("./process");
 
 const token = process.env.BOT_TOKEN;
-// const bot = new TelegramBot(token, { polling: true });
-const bot = new TelegramBot(token, { webHook: true });
+const options = {
+  webHook: {
+    port: process.env.PORT,
+  },
+};
+const url = process.env.APP_URL || "https://tg-color-bot.herokuapp.com:443";
+const bot = new TelegramBot(token, options);
+
+bot.setWebHook(`${url}/bot${token}`);
 const colorNums = 5;
 
 bot.on("photo", async (msg) => {
