@@ -86,7 +86,7 @@ const createColorDataImage = (colors) => {
     const color = colors[i];
     ctx.fillStyle = color.hex;
     ctx.fillRect(0, startY, colorWidth, offset);
-    ctx.font = "14px Arial";
+    ctx.font = "14px";
     ctx.fillText(color.hex, hexTextX, startY + 30);
   }
   return canvas.toBuffer();
