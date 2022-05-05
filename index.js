@@ -17,7 +17,7 @@ bot.on("photo", async (msg) => {
   const chatId = msg.chat.id;
   const fileId = msg.photo[msg.photo.length - 1].file_id;
 
-  bot.sendMessage(chatId, 'Image received, analyzing...');
+  bot.sendMessage(chatId, "Image received, analyzing...");
 
   const buf = await Process.stream2buffer(bot.getFileStream(fileId));
   const vector = await Process.getVectors(buf);
@@ -31,14 +31,14 @@ bot.on("photo", async (msg) => {
       return b.percentage - a.percentage;
     });
 
-    bot.sendMessage(chatId, respStr);
-    const colorDataImgBuf = Process.createColorDataImage(colors);
-    bot.sendPhoto(chatId, colorDataImgBuf);
-
     let respStr = "";
     for (const color of colors) {
       respStr += `${color.hex}\n`;
     }
+    bot.sendMessage(chatId, respStr);
+    
+    const colorDataImgBuf = Process.createColorDataImage(colors);
+    bot.sendPhoto(chatId, colorDataImgBuf);
   }
 });
 
